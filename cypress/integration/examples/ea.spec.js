@@ -27,9 +27,25 @@ describe("testing of EA app",()=>{
        
         //Table
         // cy.get(".table").find("tr > td");
-        cy.get(".table").find("tr").contains("Prashanth").parent().contains("Benefits").click();
-    })
-})
+
+        //after click table 
+        // cy.get(".table").find("tr").contains("Prashanth").parent().contains("Benefits").click();
+        
+        // cy.get(".table").find("tr").as("rows");
+        // cy.get("@rows").then(($row)=>{
+        //     // wrap:- bring all the objects of the perticular row
+        //     cy.wrap($row).click({multiple:true});
+        // });
+
+        // verify the value from a property
+        cy.wrap({name:"Karthik"}).should("have.property","name").and("eq","Karthik");
+        
+        //using Wrap
+        cy.get(".table").find("tr > td").then(($td)=>{
+            cy.wrap($td).contains("Jhon").invoke("wrap").parent().contains("Benefits").click();
+        })
+    });
+});
 
 
 describe("tesing 2 of EA App",()=>{
